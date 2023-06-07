@@ -32,7 +32,7 @@ pipeline{
       }
       stage('Tag'){ 
           withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUSR', passwordVariable: 'dockerPWD')]) {
-              sh "docker tag ${dockerImageName} ${dockerUSR}/${dockerImageName}:${currentBuild.number} "
+              sh "docker tag ${dockerImageName} ${dockerUSR}/${dockerImageName}:${currentBuild.number} " }
          }
            
          stage('Publish') {
