@@ -23,7 +23,7 @@ pipeline{
         }
         stage('post build'){
              steps{
-                 sh 'docker build -t nidhi221697/${dockerImageName}:${currentBuild.number} .'
+                 sh 'docker build -t nidhi221697/${dockerImageName}:${buildNumber} .'
                //sh 'docker run -d -p 8084:8080 nidhi2/docker-package-only-build-demo:${currentBuild.number}'        
              }
         } 
@@ -35,7 +35,7 @@ pipeline{
               script {
                   withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUSR', passwordVariable: 'dockerPWD')]) {
                       sh "docker login -u ${dockerUSR} -p ${dockerPWD}"
-                      sh "docker push ${dockerUSR}/${dockerImageName}:${currentBuild.number}" }
+                      sh "docker push ${dockerUSR}/${dockerImageName}:${buildNumber}" }
 
                  // def appimage = docker.build registry + ":$BUILD_NUMBER"
                  // docker.withRegistry( '', registryCredential ) {
