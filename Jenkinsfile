@@ -14,8 +14,14 @@ pipeline{
         }
         stage('build'){
             steps{
-               sh 'mvn package'
+               sh 'mvn clean package'
             }
         }
-    }
+        stage('post build'){
+             steps{
+               sh 'docker build -t nidhi/docker-package-only-build-demo:1.0.0 .'
+               sh 'docker run -d -p 8084:8080 nidhi/docker-package-only-build-demo:1.0.0'        
+             }
+        } 
+   }
 }
