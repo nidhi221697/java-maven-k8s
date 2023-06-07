@@ -23,7 +23,7 @@ pipeline{
         }
         stage('post build'){
              steps{
-                 sh 'docker build -t nidhi221697/${dockerImageName}:1.0.0 .'
+                 sh 'docker build -t nidhi221697/${dockerImageName}:${currentBuild.number} .'
                //sh 'docker run -d -p 8084:8080 nidhi2/docker-package-only-build-demo:${currentBuild.number}'        
              }
         } 
