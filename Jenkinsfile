@@ -21,12 +21,20 @@ pipeline{
                sh 'mvn clean package'
             }
         }
-        stage('post build'){
-             steps{
-                 sh 'docker build -t nidhi221697/${dockerImageName}:${buildNumber} .'
+       // stage('post build'){
+       //    steps{
+       //          sh 'docker build -t nidhi221697/${dockerImageName}:${buildNumber} .'
                //sh 'docker run -d -p 8084:8080 nidhi2/docker-package-only-build-demo:${currentBuild.number}'        
-             }
-        } 
+       //      }
+       // } 
+        stage('Build Docker Image'){         
+           sh "docker build -t ${dockerImageName} ."
+      }
+      stage('Tag'){ 
+          withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUSR', passwordVariable: 'dockerPWD')]) {
+              sh "docker tag ${dockerImageName} ${dockerUSR}/${dockerImageName}:${currentBuild.number} "
+         }
+           
          stage('Publish') {
          // environment {
          //     registryCredential = 'dockerhub'
@@ -35,7 +43,7 @@ pipeline{
               script {
                   withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUSR', passwordVariable: 'dockerPWD')]) {
                       sh "docker login -u ${dockerUSR} -p ${dockerPWD}"
-                      sh "docker push ${dockerUSR}/${dockerImageName}:${buildNumber}" }
+                      sh "docker push ${dockerUSR}/${dockerImageName}:${currentBuild.number}" }
 
                  // def appimage = docker.build registry + ":$BUILD_NUMBER"
                  // docker.withRegistry( '', registryCredential ) {
