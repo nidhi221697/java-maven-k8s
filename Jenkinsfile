@@ -1,9 +1,10 @@
 pipeline{
     agent any
-      def dockerImageName = 'docker-package-only-build-demo'
-      def buildNumber = 'currentBuild.number'
-
-
+    environment {
+       dockerImageName = 'docker-package-only-build-demo'
+       buildNumber = 'currentBuild.number'
+    }
+     
     tools {
          maven 'myMavan'
          jdk 'java'
