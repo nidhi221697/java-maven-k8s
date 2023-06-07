@@ -27,13 +27,19 @@ pipeline{
                //sh 'docker run -d -p 8084:8080 nidhi2/docker-package-only-build-demo:${currentBuild.number}'        
        //      }
        // } 
-        stage('Build Docker Image'){         
-           sh "docker build -t ${dockerImageName} ."
+        stage('Build Docker Image'){  
+            steps{
+               sh "docker build -t ${dockerImageName} ."
       }
+        }      
       stage('Tag'){ 
+          steps{
+              script{
           withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'dockerUSR', passwordVariable: 'dockerPWD')]) {
               sh "docker tag ${dockerImageName} ${dockerUSR}/${dockerImageName}:${currentBuild.number} " }
          }
+          }
+      }
            
          stage('Publish') {
          // environment {
