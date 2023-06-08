@@ -3,7 +3,7 @@ pipeline{
     environment {
        dockerImageName = 'docker-package-only-build-demo'
        buildNumber = 'currentBuild.number'
-        
+       image_id = "nidhi221697/${dockerImageName}:${currentBuild.number}" 
     }
      
     tools {
@@ -63,8 +63,8 @@ pipeline{
       stage ('Deploy') {
           steps {
               script{
-                  def image_id = "nidhi221697/${dockerImageName}:${currentBuild.number}"
-                  sh "echo "$image_id""
+                  //image_id = "nidhi221697/${dockerImageName}:${currentBuild.number}"
+                  sh "echo ${image_id}"
                   //sh "ansible-playbook playbook.yml --extra-vars \"image_id=${image_id}\"
               }
           }
