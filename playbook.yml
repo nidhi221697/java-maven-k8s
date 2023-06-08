@@ -1,5 +1,7 @@
 - hosts: all
+  become: true
   become_user: ubuntu
+  
   tasks:
   - name: Deploy the service
     k8s:
