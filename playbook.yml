@@ -3,7 +3,7 @@
   tasks:
   - name: Deploy the service
     become: yes
-    become_method: sudo
+    become_method: su
     become_user: ubuntu
     k8s:
       state: present
