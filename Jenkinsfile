@@ -64,8 +64,8 @@ pipeline{
           steps {
               script{
                   def image_id = "nidhi221697/${dockerImageName}:${currentBuild.number}"
-                  sh "echo image_id"
-                  sh "ansible-playbook playbook.yml --extra-vars \"image_id=${image_id}\"
+                  sh "echo "$image_id""
+                  //sh "ansible-playbook playbook.yml --extra-vars \"image_id=${image_id}\"
               }
           }
       }
