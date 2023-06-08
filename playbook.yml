@@ -1,7 +1,7 @@
 - hosts: all
   become: yes
   become_user: ubuntu
-  become_method: sudo 
+  become_method: su
   tasks:
   - name: Deploy the service
     k8s:
