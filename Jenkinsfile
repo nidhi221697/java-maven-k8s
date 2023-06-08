@@ -66,7 +66,7 @@ pipeline{
                   //image_id = "nidhi221697/${dockerImageName}:${currentBuild.number}"
                   sh "echo ${image_id}"
                   sh "whoami"
-                  //sh "ansible-playbook -i inventory playbook.yml --extra-vars image_id=${image_id}"
+                  sh "ansible-playbook -i inventory playbook.yml --extra-vars image_id=${image_id}"
               }
           }
       }
