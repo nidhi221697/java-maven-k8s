@@ -4,7 +4,7 @@
   - name: Deploy the service
     become: yes
     become_method: su
-    become_user: ubuntu
+    become_user: jenkins
     k8s:
       state: present
       definition: "{{ lookup('template', 'service.yml') | from_yaml }}"
