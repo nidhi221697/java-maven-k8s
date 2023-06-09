@@ -1,4 +1,6 @@
 - hosts: all
+  environment:
+    ANSIBLE_HOST_KEY_CHECKING: false
   become: yes
   tasks:
   - name: Deploy the service
