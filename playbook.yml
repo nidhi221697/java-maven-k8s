@@ -1,7 +1,7 @@
 - hosts: all
   #env:
    # ANSIBLE_HOST_KEY_CHECKING: false
-  become: yes
+  #become: yes
   #tasks:
   #- add_host:
   #   name: my_host
