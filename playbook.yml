@@ -2,12 +2,12 @@
   #env:
    # ANSIBLE_HOST_KEY_CHECKING: false
   become: yes
-  tasks:
-  - add_host:
-      name: my_host
-      ansible_host: 3.108.53.174
-      host_key_checking: false
-  - hosts: my_host
+  #tasks:
+  #- add_host:
+  #   name: my_host
+  #    ansible_host: 3.108.53.174
+  #    host_key_checking: false
+  #- hosts: my_host
   tasks:
   - ping:
   - name: Deploy the service
