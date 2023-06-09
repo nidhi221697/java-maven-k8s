@@ -1,5 +1,5 @@
 - hosts: all
-  environment:
+  env:
     ANSIBLE_HOST_KEY_CHECKING: false
   become: yes
   tasks:
